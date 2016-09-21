@@ -65,6 +65,10 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: landscape
 
+
+#多说
+duoshuo_shortname: woodens
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
