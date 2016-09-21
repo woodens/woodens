@@ -1,6 +1,11 @@
 ---
-title:css总结
+title: css总结
+date: 2016-08-21 19:41:38
+tags: css
 ---
+作为web开发三剑客之一的css，是页面的脸面、衣服；其中包含的内容还是比较繁多的，对于性格迥异的浏览器及出现场景，我们要
+量体裁衣
+<!-- more -->
 ### 主要内容
 - 浮动float
 - 定位position
@@ -13,9 +18,10 @@ title:css总结
 
 ### 定位position
 - #### relative
-    即使偏移，位置还在。实质就是靠近最近的元素进行偏移。```解释：可以理解为让自身元素的原点（0，0）进行偏移（左上），相对于自己移动。    ```
+    即使偏移，位置还在。实质就是靠近最近的元素进行偏移。
+    ` 解释：可以理解为让自身元素的原点（0，0）进行偏移（左上），相对于自己移动。 `
 - #### absolute
-    偏移了，位置就没了，靠最近的relative/absolute进行偏移。``` 解释：absolute 进行偏移的时候默认先去寻找外面position属性设为 absolute 或者 relative 的元素，如果有相对 它进行偏移，如果没有相对于浏览器左上角（0，0）进行偏移。```
+    偏移了，位置就没了，靠最近的relative/absolute进行偏移。` 解释：absolute 进行偏移的时候默认先去寻找外面position属性设为 absolute 或者 relative 的元素，如果有相对 它进行偏移，如果没有相对于浏览器左上角（0，0）进行偏移。 `
 - #### fixed
     相对于浏览器的窗口的位置，没有依赖感
 - #### static(默认)
@@ -38,19 +44,19 @@ title:css总结
 -   CSS样式权重的两个重要因素
     -   样式的优先级跟样式定义的顺序有关
     -   权值的大小跟选择器的类型和数量有关
-```
- 注意：一般来说，在同一个CSS文件中，如果有两个同名的样式，则后定义的会覆盖先定义的
-```
-- 一个selector的权重表示方式：0.0.0.0，即·``` 内嵌样式.ID样式.(类,伪类,以及属性个数).(伪元素和标签元素个数)```
-```
-注：通配符和继承得到的CSS属性对权重没有影响
-权重的比较并不一定可靠   例 1.0.0.0>0.11.1.1
-```
+    
+    > 注意：一般来说，在同一个CSS文件中，如果有两个同名的样式，则后定义的会覆盖先定义的
+
+- 一个selector的权重表示方式：0.0.0.0，即` 内嵌样式.ID样式.(类,伪类,以及属性个数).(伪元素和标签元素个数) `
+
+> 注：通配符和继承得到的CSS属性对权重没有影响
+> 权重的比较并不一定可靠   例 1.0.0.0>0.11.1.1
+
 
 ### display:inline-block引发的间隙
 解决方式
 - 通过设置父容器的字体大小为0，子容器的字体大小为>0的值
-
+```
     .outer {
         font-size: 0;
         -webkit-text-size-adjust:none;/**取消Chrome浏览器最小字体限制*/
@@ -58,16 +64,17 @@ title:css总结
     .outer .inner {
         font-size: 12px;
     }
-    说明：现在chrome浏览器已经取消最小字体限制
-- 设置浮动
-    float: left;
+```
+> 说明：现在chrome浏览器已经取消最小字体限制
+
+- 设置浮动 float: left;
 
 ### 水平居中
 - 行内元素解决方案
 
-```
-行内元素的父级为块级元素或包含display:block样式只需设置text-align:center;
-```
+
+> 行内元素的父级为块级元素或包含display:block样式只需设置text-align:center;
+
 
 - 块状元素解决方案
 ```
@@ -75,7 +82,6 @@ margin:10px auto;
 ```
 
 - 多个块状元素解决方案
-
 ```
 父级设置text-align:center;
 块级元素设置:display:inline-block;
@@ -88,7 +94,7 @@ margin:10px auto;
 
 ### 垂直居中
 - 单行的行内元素解决方案
-```
+```css
 .parent {
     height: 200px;
 }
@@ -100,8 +106,8 @@ a {
 ```    
 
 - 多行的行内元素解决方案
-    > 定义需要居中的父容器元素display:table-cell;vertical-align:middle;
-```
+> 定义需要居中的父容器元素display:table-cell;vertical-align:middle;
+```css
 .parent {
     width: 300px;
     height: 300px;
@@ -112,7 +118,7 @@ a {
 ```
     
 - 已知高度的块状元素解决方案
-```
+```css
 .item{
     height:100px;
     top:50%;
@@ -123,7 +129,7 @@ a {
 ```
 
 - 未知高度的块状元素解决方案
-```
+```css
 .item{
     top: 50%;
     position: absolute;
@@ -133,170 +139,161 @@ a {
 
 ### 水平垂直居中
 - 已知高度和宽度的元素解决方案1
-
-        .item{
-            position: absolute;
-            margin:auto;
-            left:0;
-            top:0;
-            right:0;
-            bottom:0;
-        }
-
+```css
+.item{
+    position: absolute;
+    margin:auto;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+}
+```
 - 已知高度和宽度的元素解决方案2
+```css
+.item{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 400px;
+    width: 300px;
+    margin-top: -200px;
+    margin-left:-150px;
+}
+```
 
-        .item{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            height: 400px;
-            width: 300px;
-            margin-top: -200px;
-            margin-left:-150px;
-        }
 - 未知高度和宽度元素解决方案
-
-        .item{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);  /* 使用css3的transform来实现 */
-        }
+```css
+.item{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* 使用css3的transform来实现 */
+}
+```
 ### 圣杯布局
-``` html
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>圣杯布局</title>
-        <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            border: 1px solid;
-            padding: 0 100px;
-            width: 500px;
-        }
-
-        .container:after {
-            content: '';
-            display: block;
-            clear: both;
-            height: 0;
-        }
-
-        .main {
-            width: 100%;
-            height: 300px;
-            background-color: red;
-            float: left;
-        }
-
-        .aside {
-            width: 100px;
-            height: 100px;
-            background: blue;
-            float: left;
-            position: relative;
-            left: -100px;
-            margin-left: -100%;
-        }
-
-        .extra {
-            width: 100px;
-            height: 100px;
-            float: left;
-            background: yellow;
-            position: relative;
-            left: 100px;
-            margin-left: -100px;
-        }
-        </style>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="main"></div>
-            <div class="aside"></div>
-            <div class="extra"></div>
-        </div>
-    </body>
-
-    </html>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>圣杯布局</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        border: 1px solid;
+        padding: 0 100px;
+        width: 500px;
+    }
+    .container:after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 0;
+    }
+    .main {
+        width: 100%;
+        height: 300px;
+        background-color: red;
+        float: left;
+    }
+    .aside {
+        width: 100px;
+        height: 100px;
+        background: blue;
+        float: left;
+        position: relative;
+        left: -100px;
+        margin-left: -100%;
+    }
+    .extra {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background: yellow;
+        position: relative;
+        left: 100px;
+        margin-left: -100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main"></div>
+        <div class="aside"></div>
+        <div class="extra"></div>
+    </div>
+</body>
+</html>
 ```
 
 ### 双飞翼布局
-``` html
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>双飞翼布局</title>
-        <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
 
-        .container {
-            border: 1px solid;
-            width: 500px;
-        }
-
-        .container:after {
-            content: '';
-            display: block;
-            clear: both;
-            height: 0;
-        }
-
-        .main {
-            width: 100%;
-            height: 300px;
-            float: left;
-        }
-
-        .main .wrap {
-            background: pink;
-            height: 300px;
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-
-        .aside {
-            width: 100px;
-            height: 100px;
-            background: blue;
-            float: left;
-            margin-left: -100%;
-        }
-
-        .extra {
-            width: 100px;
-            height: 100px;
-            float: left;
-            background: yellow;
-            margin-left: -100px;
-        }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="main">
-                <div class="wrap"></div>
-            </div>
-            <div class="aside"></div>
-            <div class="extra"></div>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>双飞翼布局</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        border: 1px solid;
+        width: 500px;
+    }
+    .container:after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 0;
+    }
+    .main {
+        width: 100%;
+        height: 300px;
+        float: left;
+    }
+    .main .wrap {
+        background: pink;
+        height: 300px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .aside {
+        width: 100px;
+        height: 100px;
+        background: blue;
+        float: left;
+        margin-left: -100%;
+    }
+    .extra {
+        width: 100px;
+        height: 100px;
+        float: left;
+        background: yellow;
+        margin-left: -100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="wrap"></div>
         </div>
-    </body>
-    </html>
+        <div class="aside"></div>
+        <div class="extra"></div>
+    </div>
+</body>
+</html>
 ```
 
 两种布局的对比
